@@ -6,8 +6,8 @@
 
 🛡️ Protect your server and lets players claim regions.
 <br>
-
-### Permissions
+  
+### Permissions:
 
 | Permission                | Description                    | By default |
 |---------------------------|--------------------------------|------------|
