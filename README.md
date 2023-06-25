@@ -1,11 +1,11 @@
 # Guard
+
 [![PayPal](https://github.com/intergrav/devins-badges/blob/v2/assets/compact/donate/paypal-singular_vector.svg)](https://www.paypal.com/donate/?hosted_button_id=KLPZFGE5FJCWQ)
 ![JDK17](https://github.com/intergrav/devins-badges/blob/v2/assets/cozy/built-with/java17_vector.svg?raw=true)
 ![Maven](https://github.com/intergrav/devins-badges/blob/v2/assets/cozy/built-with/maven_vector.svg)</br>
 
-🛡️ Protect your PowerNukkitX server and lets players claim regions.
+🛡️ Protect your server and lets players claim regions.
 <br>
-
 
 ### Permissions
 
@@ -25,5 +25,6 @@
 | `guard.all`               | Full access                    | `TRUE`     |
 
 ### Donate:
- - DonationAlerts: https://www.donationalerts.com/r/mrslerki
- - PayPal: https://www.paypal.com/donate/?hosted_button_id=KLPZFGE5FJCWQ
+
+- DonationAlerts: https://www.donationalerts.com/r/mrslerki
+- PayPal: https://www.paypal.com/donate/?hosted_button_id=KLPZFGE5FJCWQ
