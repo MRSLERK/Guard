@@ -1,0 +1,31 @@
+name: Guard
+version: ${version}
+api: 1.0.0
+author: mrslerk
+main: me.mrslerk.guard.GuardManager
+description: ${description}
+load: POSTWORLD
+
+permissions:
+  command.guard.rg:
+    default: true
+  command.guard.rg.wand:
+    default: true
+  command.guard.rg.flag:
+    default: true
+  command.guard.rg.member:
+    default: true
+  command.guard.rg.create:
+    default: true
+  command.guard.rg.pos:
+    default: true
+  command.guard.rg.list:
+    default: true
+  command.guard.rg.owner:
+    default: true
+  guard.access.wand:
+    default: true
+  guard.access.stick:
+    default: true
+  guard.all:
+    default: op

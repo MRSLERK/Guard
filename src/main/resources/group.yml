@@ -1,0 +1,4 @@
+group:
+  default:
+    max-size: 5000
+    max-count: 4

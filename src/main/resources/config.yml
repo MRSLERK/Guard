@@ -1,0 +1,83 @@
+# If true, the regions will be saved in async
+async-save: true
+language: en
+show-selection: true
+# A way to notify players when actions within regions are banned.
+# Popup - 0, Message - 1, Tip - 2.
+notification-type: 2
+
+# here the flags will not work in the specified worlds
+disabled-flags:
+  worlds:
+    world:
+      - decay
+      - drop
+      - teleport
+
+
+default-flags:
+  piston: false
+  shulker: false
+  chest: false
+  furnace: false
+  table: false
+  frame: false
+  interact: false
+  decay: true
+  change: false
+  break: false
+  place: false
+  pvp: false
+  mob: false
+  explode: false
+  damage: true
+  bucket: false
+  sleep: false
+  ender_chest: true
+  door: false
+  dispenser: false
+  beacon: false
+  hopper: false
+  barrel: false
+  redstone: false
+  fire: false
+  brewing_stand: true
+  grow: false
+  teleport: true
+  combust: true
+  drop: true
+
+
+# Flags that can be reassigned in the game via /rg flag.
+# To prevent players from changing any flag, simply delete or comment it out.
+# But only after you create service regions (spawn, arena, etc.)
+allowed-flags:
+  - teleport
+  - drop
+  - combust
+  - grow
+  - dispenser
+  - beacon
+  - fire
+  - hopper
+  - piston
+  - brewing_stand
+  - redstone
+  - barrel
+  - bucket
+  - ender_chest
+  - shulker
+  - chest
+  - furnace
+  - table
+  - frame
+  - interact
+  - decay
+  - change
+  - break
+  - place
+  - pvp
+  - mob
+  - explode
+  - damage
+  - door
