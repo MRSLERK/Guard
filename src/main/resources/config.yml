@@ -2,6 +2,7 @@
 async-save: true
 language: en
 show-selection: true
+full-height: false
 # A way to notify players when actions within regions are banned.
 # Popup - 0, Message - 1, Tip - 2.
 notification-type: 2
