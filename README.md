@@ -22,7 +22,7 @@
 | `command.guard.rg.owner`  | Access to argument /rg owner.  | `TRUE`     |
 | `guard.access.wand`       | Setting points with an ax      | `TRUE`     |
 | `guard.access.stick`      | Check region with a stick      | `TRUE`     |
-| `guard.all`               | Full access                    | `TRUE`     |
+| `guard.all`               | Full access                    | `OP`       |
 
 ### Donate:
 
