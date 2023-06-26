@@ -25,6 +25,7 @@ import me.mrslerk.guard.listener.entity.EntityExplodeListener;
 import me.mrslerk.guard.listener.player.*;
 import me.mrslerk.guard.task.RegionSaveTask;
 import me.mrslerk.guard.utils.GroupConfig;
+import me.mrslerk.guard.utils.Metrics;
 
 import java.io.File;
 import java.util.*;
@@ -68,6 +69,18 @@ public class GuardManager extends PluginBase{
         loadRegions();
         loadListener();
         getServer().getCommandMap().register(getName(), new RegionCommand("rg", "guard"));
+        metricsStart();
+    }
+
+    public static void metricsStart() {
+        try {
+            int pluginId = 18883;
+            Metrics metrics = new Metrics(getInstance(), pluginId);
+            metrics.addCustomChart(new Metrics.SimplePie("nukkit_version", () -> getInstance().getServer().getNukkitVersion()));
+            getInstance().getLogger().info(TextFormat.GREEN + "Loaded Metrics");
+        } catch (Exception e) {
+            getInstance().getLogger().info(TextFormat.GREEN + "Can't load metrics");
+        }
     }
 
 
