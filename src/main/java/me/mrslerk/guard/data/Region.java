@@ -15,7 +15,7 @@ import java.util.List;
 public class Region{
 
     @Getter
-    private String name;
+    private final String name;
 
     @Getter
     private String owner;
@@ -24,13 +24,13 @@ public class Region{
     private final List<String> members;
 
     @Getter
-    private String levelName;
+    private final String levelName;
 
     private final Vector3 min;
     private final Vector3 max;
 
     @Getter
-    private HashMap<String, Boolean> flags;
+    private final HashMap<String, Boolean> flags;
 
     @Getter
     private boolean close = false;

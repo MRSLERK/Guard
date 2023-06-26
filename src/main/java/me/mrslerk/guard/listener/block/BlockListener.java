@@ -15,7 +15,7 @@ import me.mrslerk.guard.event.flag.FlagCheckByPlayerEvent;
 abstract public class BlockListener{
 
     @Getter
-    private GuardManager plugin;
+    private final GuardManager plugin;
 
     public BlockListener(@NonNull GuardManager plugin){
         this.plugin = plugin;

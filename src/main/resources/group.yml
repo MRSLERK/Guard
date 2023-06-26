@@ -2,3 +2,6 @@ group:
   default:
     max-size: 5000
     max-count: 4
+  "30":
+    max-size: 500000000
+    max-count: 99999

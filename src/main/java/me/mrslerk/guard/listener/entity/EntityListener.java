@@ -12,7 +12,7 @@ import me.mrslerk.guard.event.flag.FlagCheckByEntityEvent;
 abstract public class EntityListener{
 
     @Getter
-    private GuardManager plugin;
+    private final GuardManager plugin;
 
     public EntityListener(@NonNull GuardManager plugin){
         this.plugin = plugin;

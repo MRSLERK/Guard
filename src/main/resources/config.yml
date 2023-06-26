@@ -9,11 +9,14 @@ notification-type: 2
 
 # here the flags will not work in the specified worlds
 disabled-flags:
-  worlds:
-    world:
-      - decay
-      - drop
-      - teleport
+  # Example:
+  #    world:
+  #      - decay
+  #      - drop
+  #      - teleport
+  worlds: []
+
+
 
 
 default-flags:

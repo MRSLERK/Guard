@@ -11,7 +11,7 @@ import me.mrslerk.guard.data.Region;
 abstract public class PlayerListener{
 
     @Getter
-    private GuardManager plugin;
+    private final GuardManager plugin;
 
     public PlayerListener(@NonNull GuardManager plugin){
         this.plugin = plugin;

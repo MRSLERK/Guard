@@ -9,7 +9,7 @@ public abstract class Argument{
     private final String name;
 
     @Getter
-    private GuardManager plugin;
+    private final GuardManager plugin;
 
     public Argument(GuardManager plugin, String name){
         this.plugin = plugin;

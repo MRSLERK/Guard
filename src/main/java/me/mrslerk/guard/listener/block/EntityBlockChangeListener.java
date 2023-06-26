@@ -15,7 +15,6 @@ public class EntityBlockChangeListener extends BlockListener implements Listener
         super(plugin);
     }
 
-    // TODO: it isn't work correct?
     @EventHandler(priority = EventPriority.MONITOR)
     public void onEvent(@NonNull EntityBlockChangeEvent event){
         if(event.isCancelled()){

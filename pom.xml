@@ -6,8 +6,8 @@
 
     <groupId>me.mrslerk.java.guard</groupId>
     <artifactId>Guard</artifactId>
-    <version>BETA-1.0.0</version>
-    <description>Protect your PowerNukkitX server and lets players claim regions.</description>
+    <version>1.0.1-Beta</version>
+    <description>Protect your server and lets players claim regions.</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
