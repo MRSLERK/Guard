@@ -32,7 +32,7 @@ import java.util.zip.GZIPOutputStream;
  * Check out https://bStats.org/ to learn more about bStats!
  */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class Metrics {
+public class Metrics{
 
     static{
         // You can use the property to disable the check in your test environment
@@ -426,7 +426,7 @@ public class Metrics {
     /**
      * Represents a custom chart.
      */
-    public static abstract class CustomChart {
+    public static abstract class CustomChart{
 
         // The id of the chart
         final String chartId;
@@ -469,7 +469,7 @@ public class Metrics {
     /**
      * Represents a custom simple pie.
      */
-    public static class SimplePie extends CustomChart {
+    public static class SimplePie extends CustomChart{
 
         private final Callable<String> callable;
 
@@ -500,7 +500,7 @@ public class Metrics {
     /**
      * Represents a custom advanced pie.
      */
-    public static class AdvancedPie extends CustomChart {
+    public static class AdvancedPie extends CustomChart{
 
         private final Callable<Map<String, Integer>> callable;
 
@@ -544,7 +544,7 @@ public class Metrics {
     /**
      * Represents a custom drilldown pie.
      */
-    public static class DrilldownPie extends CustomChart {
+    public static class DrilldownPie extends CustomChart{
 
         private final Callable<Map<String, Map<String, Integer>>> callable;
 
@@ -593,7 +593,7 @@ public class Metrics {
     /**
      * Represents a custom single line chart.
      */
-    public static class SingleLineChart extends CustomChart {
+    public static class SingleLineChart extends CustomChart{
 
         private final Callable<Integer> callable;
 
@@ -625,7 +625,7 @@ public class Metrics {
     /**
      * Represents a custom multi line chart.
      */
-    public static class MultiLineChart extends CustomChart {
+    public static class MultiLineChart extends CustomChart{
 
         private final Callable<Map<String, Integer>> callable;
 
@@ -670,7 +670,7 @@ public class Metrics {
     /**
      * Represents a custom simple bar chart.
      */
-    public static class SimpleBarChart extends CustomChart {
+    public static class SimpleBarChart extends CustomChart{
 
         private final Callable<Map<String, Integer>> callable;
 
@@ -708,7 +708,7 @@ public class Metrics {
     /**
      * Represents a custom advanced bar chart.
      */
-    public static class AdvancedBarChart extends CustomChart {
+    public static class AdvancedBarChart extends CustomChart{
 
         private final Callable<Map<String, int[]>> callable;
 

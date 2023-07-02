@@ -6,7 +6,7 @@
 
     <groupId>me.mrslerk.java.guard</groupId>
     <artifactId>Guard</artifactId>
-    <version>1.0.1-Beta</version>
+    <version>1.0.2</version>
     <description>Protect your server and lets players claim regions.</description>
 
     <properties>
@@ -19,18 +19,12 @@
             <artifactId>Group</artifactId>
             <version>2.0.0</version>
             <scope>system</scope>
-            <systemPath>${user.home}/Desktop/dfgdgd/Group/target/Group-2.0.0.jar</systemPath>
+            <systemPath>${user.home}/Desktop/FrizMine-PNX/Group/target/Group-2.0.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>cn.powernukkitx</groupId>
             <artifactId>powernukkitx</artifactId>
             <version>1.20.0-r1</version>
-            <exclusions>
-                <exclusion>
-                    <artifactId>slf4j-api</artifactId>
-                    <groupId>org.slf4j</groupId>
-                </exclusion>
-            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.projectlombok</groupId>

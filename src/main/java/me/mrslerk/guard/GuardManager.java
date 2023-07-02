@@ -72,7 +72,7 @@ public class GuardManager extends PluginBase{
         metricsStart();
     }
 
-    public static void metricsStart() {
+    public static void metricsStart(){
         try {
             int pluginId = 18883;
             Metrics metrics = new Metrics(getInstance(), pluginId);

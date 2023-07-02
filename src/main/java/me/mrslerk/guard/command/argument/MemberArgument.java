@@ -51,7 +51,7 @@ public class MemberArgument extends Argument{
             }
             if(region.addMember(target)){
                 player.sendMessage(api.getMessage("member_add").replace("{player}", target));
-            }else {
+            }else{
                 player.sendMessage(api.getMessage("player_already_member"));
             }
             return true;
@@ -74,7 +74,7 @@ public class MemberArgument extends Argument{
 
             if(region.removeMember(target)){
                 player.sendMessage(api.getMessage("member_remove").replace("{player}", target));
-            }else {
+            }else{
                 player.sendMessage(api.getMessage("player_not_exist"));
             }
         }

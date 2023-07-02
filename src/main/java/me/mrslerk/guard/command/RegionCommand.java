@@ -86,7 +86,7 @@ public class RegionCommand extends Command{
     }
 
     private Argument getArgument(String name){
-        for(Argument argument : argumentList) {
+        for(Argument argument : argumentList){
             if(argument.getName().equalsIgnoreCase(name)){
                 return argument;
             }

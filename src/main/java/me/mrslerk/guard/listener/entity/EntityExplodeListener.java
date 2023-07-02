@@ -20,7 +20,7 @@ public class EntityExplodeListener extends BlockListener implements Listener{
         if(event.isCancelled()){
             return;
         }
-        for(Block block : event.getBlockList()) {
+        for(Block block : event.getBlockList()){
             if(isFlagDenied(block, "explode", null)){
                 event.setCancelled(true);
                 break;

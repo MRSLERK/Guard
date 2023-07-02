@@ -1,6 +1,6 @@
 # If true, the regions will be saved in async
 async-save: true
-language: en
+language: ru
 show-selection: true
 full-height: false
 # A way to notify players when actions within regions are banned.
@@ -14,10 +14,7 @@ disabled-flags:
   #      - decay
   #      - drop
   #      - teleport
-  worlds: []
-
-
-
+  worlds: [ ]
 
 default-flags:
   piston: false

@@ -80,7 +80,7 @@ public class CreateArgument extends Argument{
         Position max = new Position(xMax, yMax, zMax, level);
 
         if(!player.hasPermission("guard.all")){
-            for(Region region : api.getOverride(min, max)) {
+            for(Region region : api.getOverride(min, max)){
                 if(!region.getOwner().equalsIgnoreCase(nick)){
                     player.sendMessage(api.getMessage("rg_override"));
                     return false;
