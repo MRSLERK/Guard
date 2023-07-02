@@ -1,0 +1,165 @@
+# COMMON ERROR MESSAGES:
+# no_console: send command from console
+# no_permission: insufficient permissions to send command
+no_console: "§7[§eGuard§7]§f This command can only be used in-game!"
+no_permission: "§7[§eGuard§7]§f You don't have enough permissions!"
+no_argument: "§7[§eGuard§7]§f Argument not found!"
+
+
+
+# player_not_exist: The specified player was not found
+# player_not_owner: region creator rights required
+# player_already_owner: the player already owns the region
+player_not_exist: "§7[§eGuard§7]§f The specified player was not found!"
+player_not_owner: "§7[§eGuard§7]§f You are not the owner of this region!"
+player_already_owner: "§7[§eGuard§7]§f You already own this region!"
+
+###
+# rg_exist: the specified region belongs to another player
+# rg_not_exist: the specified region has not yet been created
+# rg_oversize: region is too big
+# rg_override: region crosses someone else's
+# rg_overcount: the number of regions per player is exceeded
+# rg_help: command help menu
+rg_exist: "§7[§eGuard§7]§f The specified region already exists"
+rg_not_exist: "§7[§eGuard§7]§f Region not found"
+#
+# {max_count} - maximum region size
+rg_oversize: "§7[§eGuard§7]§f Maximum size: {max_size} blocks"
+rg_override: "§7[§eGuard§7]§f Position overrides another region"
+#
+# {max_count} - maximum number of regions
+rg_overcount: "§7[§eGuard§7]§f Maximum Regions: §a{max_count}"
+rg_help: "§7[§eGuard§7]§f Guard Help: \n§7* §a/rg create §7- §f create region\n§7* §a/rg delete §7- §f delete region\n§7* §a/rg position 1, 2 §7- §monitor points\n§7* §a/rg flag §7- §follow flag\n§7* §a/rg member §7 - §monitor members\n§7* §a/rg owner §7- §monitor owner\n§7* §a/rg list §7- §monitor list of regions"
+###
+# MESSAGES WHEN ENTERING COMMANDS:
+# 1. /rg create <region
+###
+# create_help: command help
+# short_name: short name
+# long_name: long name
+# bad_name: bad name
+# rg_create: region created successfully
+create_help: "§7[§eGuard§7]§f Usage: §a/rg create <region>"
+short_name: "§7[§eGuard§7]§fRegion name too short"
+long_name: "§7[§eGuard§7]§f Region name too long"
+bad_name: "§7[§eGuard§7]§f Only latin letters and numbers allowed"
+pos_1_not_set: "§7[§eGuard§7]§fFirst position not found!"
+pos_2_not_set: "§7[§eGuard§7]§f Second position not found!"
+#
+# {region} - region name at creation
+rg_create: "§7[§eGuard§7]§f Region {region} successfully created!"
+###
+# 2. /rg flag <region> <flag
+###
+# flag_help: command help
+# flag_on: flag on
+# flag_off: flag off
+# flag_not_exist: flag does not exist
+#
+# {flag_list}: list of all available flags
+flag_help: "§7[§eGuard§7]§f Usage: §a/rg flag <region> <flag> §7- §f Change flag\n§7> §fAvailable flags:§e {flag_list}"
+flag_not_exist: "§7[§eGuard§7]§fThe specified flag does not exist."
+#
+# {flag} - enabled flag
+flag_on: "§7[§eGuard§7]§f §a{flag} §fenabled"
+#
+# {flag} - flag removed
+flag_off: "§7[§eGuard§7]§fFlag §a{flag} §fturned off"
+###
+# # 3. /rg list
+###
+# list_empty: no regions found
+# list_success: list of regions
+list_empty: "§7[§eGuard§7]§f You have no regions."
+#
+# {list}: list of regions
+list_success: "§7[§eGuard§7]§f List of your regions: §a{list}"
+###
+# # 4. /rg member [add, remove] <region> <player
+###
+# member_help: help on command
+# member_add: player added to region
+# member_remove: player removed from region
+# player_already_member: the player is already in the region
+member_help: "§7[§eGuard§7]§f Usage: §a/rg member <add|remove> <region> <player> §7- §f member management"
+#
+# {player} - added player
+member_add: "§7[§eGuard§7]§f Player §a{player} §fis added to the region"
+#
+# {player} - excluded player
+member_remove: "§7[§eGuard§7]§f Player §a{player} §fis removed from the region"
+player_already_member: "§7[§eGuard§7]§f Player §fis already in the region"
+###
+# # 5. /rg owner <region> <player
+###
+# owner_help: help on command
+# owner_change: region owner has been changed
+# owner_got_region: player got region
+owner_help: "§7[§eGuard§7]§f Usage: §a/rg owner <region> <player> §7- §fassign owner "
+# {region} - region
+# {player} - new region owner
+owner_change: "§7[§eGuard§7]§f Player §a{player} §f now owns region §b{region}"
+# {player} - old region owner
+owner_got_region: "§7[§eGuard§7]§f Player §a{player} §f has given you the region §b{region}"
+
+###
+# 6. /rg pos [1,2]
+###
+# pos_help: help on command
+# pos_1_set: position 1 set
+# pos_2_set: position 2 is set
+# pos_another_world: positions in different worlds
+pos_help: "§7[§eGuard§7]§f Usage: §a/rg pos <1,2> §7- §f set position"
+pos_1_set: "§7[§eGuard§7]§f Position §a1 §fis set."
+pos_2_set: "§7[§eGuard§7]§f Position §a2 §fis set."
+pos_another_world: "§7[§eGuard§7]§f Positions are in different worlds."
+###
+# # 7. /rg remove <region
+###
+# remove_help: help on command
+# rg_remove: region removed
+remove_help: "§7[§eGuard§7]§f Usage: §a/rg remove <region> §7- §f remove region"
+rg_remove: "§7[§eGuard§7]§f Region removed"
+###
+# # 8. /rg wand
+###
+# got_wand: axe to pick positions
+# inventory_oversize: inventory is full
+got_wand: "§7[§eGuard§7]§f You got an axe for Guard"
+inventory_oversize: "§7[§eGuard§7]§f Your inventory is full"
+
+###
+## REGION INFORMATION:
+# {region} - name of the region
+# {owner} - the owner of the region
+# {member} - members of the region
+rg_info: "§fRegion:§a {region} §fOwner:§c {owner}\n§fMembers: §b{member}"
+
+warn_flag_interact: ""
+warn_flag_bucket: "§7[§eGuard§7]§f Bucket cannot be used in this region!"
+warn_flag_damage: ""
+warn_flag_change: "§7[§eGuard§7]§f You cannot change blocks in this region!"
+warn_flag_furnace: "§7[§eGuard§7]§f You cannot use furnaces in this region!"
+warn_flag_shulker: "§7[§eGuard§7]§f You cannot use shulkers in this region!"
+warn_flag_table: "§7[§eGuard§7]§f You may not use this table in this region!"
+warn_flag_ender_chest: "§7[§eGuard§7]§f You cannot use an ender chest in this region!"
+warn_flag_chest: "§7[§eGuard§7]§f You cannot use chests in this region!"
+warn_flag_frame: "§7[§eGuard§7]§f Frames cannot be used in this region!"
+warn_flag_place: "§7[§eGuard§7]§f No blocks can be placed in this region!"
+warn_flag_break: "§7[§eGuard§7]§f You cannot break blocks in this region!"
+warn_flag_door: "§7[§eGuard§7]§f No doors can be used in this region!"
+warn_flag_dispenser: "§7[§eGuard§7]§f The dispenser cannot be used in this region!"
+warn_flag_beacon: "§7[§eGuard§7]§f The beacon cannot be used in this region!"
+warn_flag_hopper: "§7[§eGuard§7]§f No funnel can be used in this region!"
+warn_flag_barrel: "§7[§eGuard§7]§f You cannot use a barrel in this region!"
+warn_flag_redstone: "§7[§eGuard§7]§f Redstone cannot be used in this region!"
+brewing_stand: "§7[§eGuard§7]§f You may not use a brewing stand in this region!"
+warn_flag_fire: "§7[§eGuard§7]§f You may not use fire in this region!"
+warn_flag_sleep: "§7[§eGuard§7]§f Beds are not allowed in this region!"
+warn_flag_grow: "§7[§eGuard§7]§f No bonemeal can be used in this region!"
+warn_flag_teleport: "§7[§eGuard§7]§f You cannot teleport to this region!"
+warn_flag_drop: "§7[§eGuard§7]§f You cannot drop an item in this region!"
+warn_flag_combust: ""
+warn_flag_mob: ""
+warn_flag_pvp: ""
