@@ -12,7 +12,6 @@ import cn.nukkit.utils.Config;
 import cn.nukkit.utils.TextFormat;
 import lombok.Getter;
 import lombok.NonNull;
-import me.mrslerk.group.GroupManager;
 import me.mrslerk.guard.command.RegionCommand;
 import me.mrslerk.guard.data.Region;
 import me.mrslerk.guard.event.region.RegionCreateEvent;
@@ -31,7 +30,7 @@ import java.io.File;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class GuardManager extends PluginBase{
+public class GuardManager extends PluginBase {
 
     @Getter
     public static GuardManager instance;
@@ -53,7 +52,7 @@ public class GuardManager extends PluginBase{
 
 
     @Override
-    public void onLoad(){
+    public void onLoad() {
         instance = this;
         saveResource("config.yml");
         saveResource("group.yml");
@@ -65,14 +64,14 @@ public class GuardManager extends PluginBase{
     }
 
     @Override
-    public void onEnable(){
+    public void onEnable() {
         loadRegions();
         loadListener();
         getServer().getCommandMap().register(getName(), new RegionCommand("rg", "guard"));
         metricsStart();
     }
 
-    public static void metricsStart(){
+    public static void metricsStart() {
         try {
             int pluginId = 18883;
             Metrics metrics = new Metrics(getInstance(), pluginId);
@@ -84,15 +83,15 @@ public class GuardManager extends PluginBase{
     }
 
 
-    private void registerFlags(){
-        for(Map.Entry<String, Object> entry : config.getSection("default-flags").entrySet()){
+    private void registerFlags() {
+        for (Map.Entry<String, Object> entry : config.getSection("default-flags").entrySet()) {
             String flag = entry.getKey();
             Object value = entry.getValue();
             defaultFlags.put(flag, (Boolean) value);
         }
     }
 
-    private void loadListener(){
+    private void loadListener() {
         Listener[] list = {
                 new PlayerInteractListener(this),
                 new BlockBreakListener(this),
@@ -111,18 +110,18 @@ public class GuardManager extends PluginBase{
                 new PlayerDropListener(this),
                 new BlockPistonListener(this)
         };
-        for(Listener listener : list){
+        for (Listener listener : list) {
             this.getServer().getPluginManager().registerEvents(listener, this);
         }
     }
 
-    private void loadRegions(){
+    private void loadRegions() {
         File regionsDir = new File(getDataFolder() + "/regions");
-        if(!regionsDir.exists()){
+        if (!regionsDir.exists()) {
             regionsDir.mkdir();
         }
-        for(File regionFile : Objects.requireNonNull(regionsDir.listFiles())){
-            if(!regionFile.isFile()){
+        for (File regionFile : Objects.requireNonNull(regionsDir.listFiles())) {
+            if (!regionFile.isFile()) {
                 continue;
             }
             Config data = new Config(regionFile);
@@ -132,7 +131,7 @@ public class GuardManager extends PluginBase{
             Vector3 max = new Vector3(data.getDouble("pos.max.x"), data.getDouble("pos.max.y"), data.getDouble("pos.max.z"));
             String level = data.getString("pos.level");
             String name = data.getString("name");
-            if(!regions.containsKey(level)){
+            if (!regions.containsKey(level)) {
                 regions.put(level, new HashMap<>());
             }
             HashMap<String, Region> map = regions.get(level);
@@ -141,27 +140,27 @@ public class GuardManager extends PluginBase{
         }
     }
 
-    public HashMap<String, HashMap<String, Region>> getAllRegions(){
+    public HashMap<String, HashMap<String, Region>> getAllRegions() {
         return regions;
     }
 
-    public Region getRegionByName(@NonNull String name){
+    public Region getRegionByName(@NonNull String name) {
         return regions.values().stream().flatMap(data -> data.values().stream()).filter(region -> region.getName().equalsIgnoreCase(name)).findFirst().orElse(null);
     }
 
 
-    public List<Region> getRegionList(@NonNull String nick, boolean include_member){
+    public List<Region> getRegionList(@NonNull String nick, boolean include_member) {
         List<Region> list = new ArrayList<>();
-        for(HashMap<String, Region> data : regions.values()){
-            for(Region region : data.values()){
-                if(region.getOwner().equalsIgnoreCase(nick)){
+        for (HashMap<String, Region> data : regions.values()) {
+            for (Region region : data.values()) {
+                if (region.getOwner().equalsIgnoreCase(nick)) {
                     list.add(region);
                     continue;
                 }
-                if(include_member){
+                if (include_member) {
                     continue;
                 }
-                if(Arrays.stream(region.getMembers()).anyMatch((member) -> member.equalsIgnoreCase(nick))){
+                if (Arrays.stream(region.getMembers()).anyMatch((member) -> member.equalsIgnoreCase(nick))) {
                     list.add(region);
                 }
             }
@@ -169,25 +168,25 @@ public class GuardManager extends PluginBase{
         return list;
     }
 
-    public Region getRegion(@NonNull Position pos){
+    public Region getRegion(@NonNull Position pos) {
         int x = pos.getFloorX();
         int y = pos.getFloorY();
         int z = pos.getFloorZ();
-        if(!regions.containsKey(pos.getLevel().getFolderName())){
+        if (!regions.containsKey(pos.getLevel().getFolderName())) {
             return null;
         }
 
         return regions.get(pos.getLevel().getFolderName()).values().stream().filter(region -> region.getMinX() <= x && x <= region.getMaxX() && region.getMinY() <= y && y <= region.getMaxY() && region.getMinZ() <= z && z <= region.getMaxZ()).findFirst().orElse(null);
     }
 
-    public List<Region> getOverride(@NonNull Position min, @NonNull Position max){
+    public List<Region> getOverride(@NonNull Position min, @NonNull Position max) {
         String level = min.getLevel().getFolderName();
         List<Region> list = new ArrayList<>();
 
-        if(!level.equals(max.getLevel().getFolderName())){
+        if (!level.equals(max.getLevel().getFolderName())) {
             return list;
         }
-        if(!regions.containsKey(min.getLevel().getFolderName())){
+        if (!regions.containsKey(min.getLevel().getFolderName())) {
             return list;
         }
 
@@ -195,49 +194,45 @@ public class GuardManager extends PluginBase{
         return list;
     }
 
-    public GroupConfig getGroupConfig(){
+    public GroupConfig getGroupConfig() {
         return group;
     }
 
-    public String getMessage(String key){
-        if(!messages.exists(key)){
+    public String getMessage(String key) {
+        if (!messages.exists(key)) {
             return key;
         }
         return String.valueOf(messages.get(key));
     }
 
-    public String getPlayerGroupId(@NonNull Player player){
-        if(getServer().getPluginManager().getPlugin("Group") == null){
-            return "0";
-        }
-        GroupManager manager = GroupManager.getInstance();
-        return String.valueOf(manager.getGroup(player.getName()).getId());
+    public String getPlayerGroupId(@NonNull Player player) {
+        return "0";//сюда группу ебануть надо
     }
 
 
-    public int calculateSize(Vector3 pos1, Vector3 pos2){
+    public int calculateSize(Vector3 pos1, Vector3 pos2) {
         float[] x = new float[]{(float) Math.min(pos1.getX(), pos2.getX()), (float) Math.max(pos1.getX(), pos2.getX())};
         float[] y = new float[]{0F, 1F};
-        if(!config.getBoolean("full-height")){
+        if (!config.getBoolean("full-height")) {
             y = new float[]{(float) Math.min(pos1.getY(), pos2.getY()), (float) Math.max(pos1.getY(), pos2.getY())};
         }
         float[] z = new float[]{(float) Math.min(pos1.getZ(), pos2.getZ()), (float) Math.max(pos1.getZ(), pos2.getZ())};
         return (int) ((x[1] - x[0]) * (y[1] - y[0]) * (z[1] - z[0]));
     }
 
-    public void createRegion(@NonNull Vector3 min, @NonNull Vector3 max, @NonNull Level level, @NonNull String name, @NonNull String owner){
+    public void createRegion(@NonNull Vector3 min, @NonNull Vector3 max, @NonNull Level level, @NonNull String name, @NonNull String owner) {
         Region region = new Region(name, owner, level.getFolderName(), new ArrayList<>(), defaultFlags, min, max);
         RegionCreateEvent event = new RegionCreateEvent(this, region);
         getServer().getPluginManager().callEvent(event);
-        if(event.isCancelled()){
+        if (event.isCancelled()) {
             return;
         }
-        if(config.getBoolean("full-height")){
+        if (config.getBoolean("full-height")) {
             max.y = level.getMaxHeight();
             min.y = level.getMinHeight();
         }
 
-        if(!regions.containsKey(level.getFolderName())){
+        if (!regions.containsKey(level.getFolderName())) {
             regions.put(level.getFolderName(), new HashMap<>());
         }
         HashMap<String, Region> data = regions.get(level.getFolderName());
@@ -246,38 +241,38 @@ public class GuardManager extends PluginBase{
         saveRegion(region);
     }
 
-    public void saveRegion(@NonNull Region region, boolean async){
+    public void saveRegion(@NonNull Region region, boolean async) {
         RegionSaveEvent event = new RegionSaveEvent(this, region);
         getServer().getPluginManager().callEvent(event);
-        if(event.isCancelled()){
+        if (event.isCancelled()) {
             return;
         }
 
         RegionSaveTask task = new RegionSaveTask(region, this);
-        if(async){
+        if (async) {
             getServer().getScheduler().scheduleAsyncTask(this, task);
-        }else{
+        } else {
             task.onRun();
         }
     }
 
-    public boolean isIgnoredFlag(@NonNull String flag, @NonNull Level level){
+    public boolean isIgnoredFlag(@NonNull String flag, @NonNull Level level) {
         return config.getStringList("disabled-flags." + level.getFolderName().toLowerCase()).stream().anyMatch(f -> f.equalsIgnoreCase(flag));
     }
 
 
-    public void saveRegion(@NonNull Region region){
+    public void saveRegion(@NonNull Region region) {
         saveRegion(region, config.getBoolean("async-save", true));
     }
 
-    public void sendWarning(@NonNull Player player, String key){
+    public void sendWarning(@NonNull Player player, String key) {
         String message = TextFormat.RED + "An internal error has occurred! Key: " + key + " not found.";
-        if(!Objects.equals(getMessage(key), key)){
+        if (!Objects.equals(getMessage(key), key)) {
             message = getMessage(key);
-        }else{
+        } else {
             getLogger().error(message);
         }
-        switch(config.getInt("notification-type", 2)){
+        switch (config.getInt("notification-type", 2)) {
             case 0 -> player.sendPopup(message);
             case 1 -> player.sendMessage(message);
             case 2 -> player.sendTip(message);
@@ -285,10 +280,10 @@ public class GuardManager extends PluginBase{
     }
 
 
-    public void removeRegion(@NonNull Region region){
+    public void removeRegion(@NonNull Region region) {
         RegionRemoveEvent event = new RegionRemoveEvent(this, region);
         getServer().getPluginManager().callEvent(event);
-        if(event.isCancelled()){
+        if (event.isCancelled()) {
             return;
         }
         HashMap<String, Region> data = regions.get(region.getLevelName());
@@ -298,12 +293,12 @@ public class GuardManager extends PluginBase{
         file.delete();
     }
 
-    public void sendSelection(@NonNull Player player, @NonNull Vector3 pos1, @NonNull Vector3 pos2){
-        if(!config.getBoolean("show-selection")){
+    public void sendSelection(@NonNull Player player, @NonNull Vector3 pos1, @NonNull Vector3 pos2) {
+        if (!config.getBoolean("show-selection")) {
             return;
         }
         removeSelection(player);
-        if(config.getBoolean("full-height")){
+        if (config.getBoolean("full-height")) {
             pos1.y = player.getLevel().getMaxHeight();
             pos2.y = player.getLevel().getMinHeight();
         }
@@ -313,20 +308,20 @@ public class GuardManager extends PluginBase{
         selections.put(nick, fakeStructBlock);
     }
 
-    public void removeSelection(@NonNull Player player){
+    public void removeSelection(@NonNull Player player) {
         String nick = player.getName();
-        if(selections.containsKey(nick)){
+        if (selections.containsKey(nick)) {
             selections.remove(nick).remove(player);
         }
     }
 
 
     @Override
-    public void onDisable(){
-        for(Map.Entry<String, FakeStructBlock> entry : selections.entrySet()){
+    public void onDisable() {
+        for (Map.Entry<String, FakeStructBlock> entry : selections.entrySet()) {
             String nick = entry.getKey();
             Player player = getServer().getPlayerExact(nick);
-            if(player != null){
+            if (player != null) {
                 removeSelection(player);
             }
         }
