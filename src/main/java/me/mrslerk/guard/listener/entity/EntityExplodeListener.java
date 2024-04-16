@@ -9,19 +9,19 @@ import lombok.NonNull;
 import me.mrslerk.guard.GuardManager;
 import me.mrslerk.guard.listener.block.BlockListener;
 
-public class EntityExplodeListener extends BlockListener implements Listener{
+public class EntityExplodeListener extends BlockListener implements Listener {
 
-    public EntityExplodeListener(@NonNull GuardManager plugin){
+    public EntityExplodeListener(@NonNull GuardManager plugin) {
         super(plugin);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onEvent(@NonNull EntityExplodeEvent event){
-        if(event.isCancelled()){
+    public void onEvent(@NonNull EntityExplodeEvent event) {
+        if (event.isCancelled()) {
             return;
         }
-        for(Block block : event.getBlockList()){
-            if(isFlagDenied(block, "explode", null)){
+        for (Block block : event.getBlockList()) {
+            if (isFlagDenied(block, "explode", null)) {
                 event.setCancelled(true);
                 break;
             }

@@ -8,21 +8,21 @@ import cn.nukkit.event.block.LeavesDecayEvent;
 import lombok.NonNull;
 import me.mrslerk.guard.GuardManager;
 
-public class LeavesDecayListener extends BlockListener implements Listener{
+public class LeavesDecayListener extends BlockListener implements Listener {
 
 
-    public LeavesDecayListener(@NonNull GuardManager plugin){
+    public LeavesDecayListener(@NonNull GuardManager plugin) {
         super(plugin);
     }
 
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onEvent(@NonNull LeavesDecayEvent event){
-        if(event.isCancelled()){
+    public void onEvent(@NonNull LeavesDecayEvent event) {
+        if (event.isCancelled()) {
             return;
         }
         Block block = event.getBlock();
-        if(isFlagDenied(block, "decay", null)){
+        if (isFlagDenied(block, "decay", null)) {
             event.setCancelled(true);
         }
     }

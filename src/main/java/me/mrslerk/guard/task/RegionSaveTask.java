@@ -6,18 +6,18 @@ import cn.nukkit.utils.ConfigSection;
 import me.mrslerk.guard.GuardManager;
 import me.mrslerk.guard.data.Region;
 
-public class RegionSaveTask extends AsyncTask{
+public class RegionSaveTask extends AsyncTask {
 
     private final Region region;
     private final GuardManager plugin;
 
-    public RegionSaveTask(Region region, GuardManager plugin){
+    public RegionSaveTask(Region region, GuardManager plugin) {
         this.region = region;
         this.plugin = plugin;
     }
 
     @Override
-    public void onRun(){
+    public void onRun() {
         ConfigSection section = new ConfigSection();
         section.set("owner", region.getOwner());
         section.set("members", region.getMembers());

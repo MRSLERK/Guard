@@ -9,7 +9,7 @@ import me.mrslerk.guard.GuardManager;
 import me.mrslerk.guard.data.Region;
 
 
-public class FlagCheckByPlayerEvent extends FlagCheckEvent implements Cancellable{
+public class FlagCheckByPlayerEvent extends FlagCheckEvent implements Cancellable {
 
     @Getter
     private final Player player;
@@ -18,7 +18,7 @@ public class FlagCheckByPlayerEvent extends FlagCheckEvent implements Cancellabl
     private final Position position;
 
 
-    public FlagCheckByPlayerEvent(GuardManager plugin, Region region, String flag, Player player, Position position){
+    public FlagCheckByPlayerEvent(GuardManager plugin, Region region, String flag, Player player, Position position) {
         super(plugin, region, flag);
         this.player = player;
         this.position = position;

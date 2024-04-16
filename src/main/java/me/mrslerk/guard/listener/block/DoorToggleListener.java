@@ -8,20 +8,20 @@ import cn.nukkit.event.block.DoorToggleEvent;
 import lombok.NonNull;
 import me.mrslerk.guard.GuardManager;
 
-public class DoorToggleListener extends BlockListener implements Listener{
+public class DoorToggleListener extends BlockListener implements Listener {
 
 
-    public DoorToggleListener(@NonNull GuardManager plugin){
+    public DoorToggleListener(@NonNull GuardManager plugin) {
         super(plugin);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onEvent(@NonNull DoorToggleEvent event){
-        if(event.isCancelled()){
+    public void onEvent(@NonNull DoorToggleEvent event) {
+        if (event.isCancelled()) {
             return;
         }
         Player player = event.getPlayer();
-        if(isFlagDenied(event.getBlock(), "door", player)){
+        if (isFlagDenied(event.getBlock(), "door", player)) {
             event.setCancelled(true);
         }
     }

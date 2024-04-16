@@ -12,31 +12,24 @@ import me.mrslerk.guard.event.region.RegionOwnerChangeEvent;
 import java.util.HashMap;
 import java.util.List;
 
-public class Region{
+public class Region {
 
     @Getter
     private final String name;
-
-    @Getter
-    private String owner;
-
-
     private final List<String> members;
-
     @Getter
     private final String levelName;
-
     private final Vector3 min;
     private final Vector3 max;
-
     @Getter
     private final HashMap<String, Boolean> flags;
-
+    @Getter
+    private String owner;
     @Getter
     private boolean close = false;
 
 
-    public Region(@NonNull String name, @NonNull String owner, @NonNull String levelName, @NonNull List<String> members, @NonNull HashMap<String, Boolean> flags, @NonNull Vector3 min, @NonNull Vector3 max){
+    public Region(@NonNull String name, @NonNull String owner, @NonNull String levelName, @NonNull List<String> members, @NonNull HashMap<String, Boolean> flags, @NonNull Vector3 min, @NonNull Vector3 max) {
         this.name = name;
         this.owner = owner;
         this.levelName = levelName;
@@ -49,20 +42,20 @@ public class Region{
     }
 
 
-    public void setOwner(@NonNull String nick){
+    public void setOwner(@NonNull String nick) {
         RegionOwnerChangeEvent event = new RegionOwnerChangeEvent(getPlugin(), this, owner, nick);
         getPlugin().getServer().getPluginManager().callEvent(event);
-        if(event.isCancelled()){
+        if (event.isCancelled()) {
             return;
         }
         owner = nick.toLowerCase();
         save();
     }
 
-    public void setFlag(@NonNull String flag, boolean value){
+    public void setFlag(@NonNull String flag, boolean value) {
         RegionFlagChangeEvent event = new RegionFlagChangeEvent(getPlugin(), this, flag, value);
         getPlugin().getServer().getPluginManager().callEvent(event);
-        if(event.isCancelled()){
+        if (event.isCancelled()) {
             return;
         }
         flags.put(flag, value);
@@ -70,14 +63,14 @@ public class Region{
     }
 
 
-    public boolean removeMember(@NonNull String member){
+    public boolean removeMember(@NonNull String member) {
         member = member.toLowerCase();
         RegionMemberChangeEvent event = new RegionMemberChangeEvent(getPlugin(), this, member, RegionMemberChangeEvent.TYPE_REMOVE);
         getPlugin().getServer().getPluginManager().callEvent(event);
-        if(event.isCancelled()){
+        if (event.isCancelled()) {
             return false;
         }
-        if(!hasMember(member)){
+        if (!hasMember(member)) {
             return false;
         }
         members.remove(member);
@@ -85,14 +78,14 @@ public class Region{
         return true;
     }
 
-    public boolean addMember(@NonNull String member){
+    public boolean addMember(@NonNull String member) {
         member = member.toLowerCase();
         RegionMemberChangeEvent event = new RegionMemberChangeEvent(getPlugin(), this, member, RegionMemberChangeEvent.TYPE_ADD);
         getPlugin().getServer().getPluginManager().callEvent(event);
-        if(event.isCancelled()){
+        if (event.isCancelled()) {
             return false;
         }
-        if(hasMember(member)){
+        if (hasMember(member)) {
             return false;
         }
         members.add(member);
@@ -100,65 +93,65 @@ public class Region{
         return true;
     }
 
-    public boolean hasMember(@NonNull String member){
+    public boolean hasMember(@NonNull String member) {
         return members.contains(member.toLowerCase());
     }
 
-    public String[] getMembers(){
-        if(members.size() == 0){
+    public String[] getMembers() {
+        if (members.size() == 0) {
             return new String[]{};
         }
         return members.toArray(new String[members.size() - 1]);
     }
 
-    public int getMinX(){
+    public int getMinX() {
         return min.getFloorX();
     }
 
-    public int getMinY(){
+    public int getMinY() {
         return min.getFloorY();
     }
 
-    public int getMinZ(){
+    public int getMinZ() {
         return min.getFloorZ();
     }
 
-    public int getMaxX(){
+    public int getMaxX() {
         return max.getFloorX();
     }
 
-    public boolean getFlagValue(@NonNull String flag){
-        if(!flags.containsKey(flag)){
+    public boolean getFlagValue(@NonNull String flag) {
+        if (!flags.containsKey(flag)) {
             return false;
         }
         return flags.get(flag);
     }
 
-    public int getMaxY(){
+    public int getMaxY() {
         return max.getFloorY();
     }
 
-    public int getMaxZ(){
+    public int getMaxZ() {
         return max.getFloorZ();
     }
 
-    public Vector3 getMax(){
+    public Vector3 getMax() {
         return max;
     }
 
-    public Vector3 getMin(){
+    public Vector3 getMin() {
         return min;
     }
 
-    public void save(){
+    public void save() {
         GuardManager.getInstance().saveRegion(this);
     }
 
-    public void close(){
+    public void close() {
         close = true;
     }
 
-    public GuardManager getPlugin(){
+    public GuardManager getPlugin() {
         return GuardManager.getInstance();
     }
 }

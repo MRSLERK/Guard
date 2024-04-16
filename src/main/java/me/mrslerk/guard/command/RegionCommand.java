@@ -10,11 +10,11 @@ import me.mrslerk.guard.GuardManager;
 import me.mrslerk.guard.command.argument.*;
 
 
-public class RegionCommand extends Command{
+public class RegionCommand extends Command {
 
     private final Argument[] argumentList;
 
-    public RegionCommand(String name, String description){
+    public RegionCommand(String name, String description) {
         super(name, description);
         this.setPermission("command.guard.rg");
         GuardManager api = GuardManager.getInstance();
@@ -85,37 +85,37 @@ public class RegionCommand extends Command{
         };
     }
 
-    private Argument getArgument(String name){
-        for(Argument argument : argumentList){
-            if(argument.getName().equalsIgnoreCase(name)){
+    private Argument getArgument(String name) {
+        for (Argument argument : argumentList) {
+            if (argument.getName().equalsIgnoreCase(name)) {
                 return argument;
             }
         }
         return null;
     }
 
-    public boolean execute(CommandSender sender, String commandLabel, String[] args){
+    public boolean execute(CommandSender sender, String commandLabel, String[] args) {
 
         GuardManager api = GuardManager.getInstance();
 
-        if(!(sender instanceof Player)){
+        if (!(sender instanceof Player)) {
             sender.sendMessage(api.getMessage("no_console"));
             return false;
         }
 
-        if(!testPermission(sender)){
+        if (!testPermission(sender)) {
             return false;
         }
 
         Player player = ((Player) sender).getPlayer();
 
-        if(args.length == 0){
+        if (args.length == 0) {
             player.sendMessage(api.getMessage("rg_help"));
             return false;
         }
 
         Argument argument = getArgument(args[0]);
-        if(argument == null){
+        if (argument == null) {
             player.sendMessage(api.getMessage("no_argument"));
             return false;
         }

@@ -8,7 +8,7 @@ import me.mrslerk.guard.GuardManager;
 import me.mrslerk.guard.data.Region;
 
 
-public class FlagCheckByEntityEvent extends FlagCheckEvent implements Cancellable{
+public class FlagCheckByEntityEvent extends FlagCheckEvent implements Cancellable {
 
 
     @Getter
@@ -17,7 +17,7 @@ public class FlagCheckByEntityEvent extends FlagCheckEvent implements Cancellabl
     @Getter
     private final Entity target;
 
-    public FlagCheckByEntityEvent(GuardManager plugin, Region region, String flag, Entity entity, Entity target){
+    public FlagCheckByEntityEvent(GuardManager plugin, Region region, String flag, Entity entity, Entity target) {
         super(plugin, region, flag);
         this.entity = entity;
         this.target = target;

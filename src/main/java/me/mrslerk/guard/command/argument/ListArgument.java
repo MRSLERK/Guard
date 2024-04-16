@@ -8,29 +8,29 @@ import me.mrslerk.guard.data.Region;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ListArgument extends Argument{
+public class ListArgument extends Argument {
 
-    public ListArgument(GuardManager plugin){
+    public ListArgument(GuardManager plugin) {
         super(plugin, "list");
     }
 
     @Override
-    public boolean execute(CommandSender sender, String commandLabel, String[] args){
+    public boolean execute(CommandSender sender, String commandLabel, String[] args) {
         GuardManager api = getPlugin();
-        if(!(sender instanceof Player)){
+        if (!(sender instanceof Player)) {
             sender.sendMessage(api.getMessage("no_console"));
             return false;
         }
 
         Player player = ((Player) sender).getPlayer();
-        if(!player.hasPermission("command.guard.rg.list")){
+        if (!player.hasPermission("command.guard.rg.list")) {
             player.sendMessage(api.getMessage("no_permission"));
             return false;
         }
         String nick = sender.getName().toLowerCase();
 
         List<Region> regions = api.getRegionList(nick, false);
-        if(regions.isEmpty()){
+        if (regions.isEmpty()) {
             player.sendMessage(api.getMessage("list_empty"));
             return false;
         }

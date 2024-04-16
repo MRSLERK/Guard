@@ -8,20 +8,20 @@ import cn.nukkit.event.player.PlayerTeleportEvent;
 import lombok.NonNull;
 import me.mrslerk.guard.GuardManager;
 
-public class PlayerTeleportListener extends PlayerListener implements Listener{
+public class PlayerTeleportListener extends PlayerListener implements Listener {
 
 
-    public PlayerTeleportListener(@NonNull GuardManager plugin){
+    public PlayerTeleportListener(@NonNull GuardManager plugin) {
         super(plugin);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onEvent(@NonNull PlayerTeleportEvent event){
-        if(event.isCancelled()){
+    public void onEvent(@NonNull PlayerTeleportEvent event) {
+        if (event.isCancelled()) {
             return;
         }
         Player player = event.getPlayer();
-        if(isFlagDenied(player, "teleport", null)){
+        if (isFlagDenied(player, "teleport", null)) {
             event.setCancelled(true);
         }
     }

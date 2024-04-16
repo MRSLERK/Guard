@@ -5,9 +5,9 @@ import me.mrslerk.guard.GuardManager;
 import me.mrslerk.guard.data.Region;
 import me.mrslerk.guard.event.RegionEvent;
 
-public class RegionRemoveEvent extends RegionEvent implements Cancellable{
+public class RegionRemoveEvent extends RegionEvent implements Cancellable {
 
-    public RegionRemoveEvent(GuardManager plugin, Region region){
+    public RegionRemoveEvent(GuardManager plugin, Region region) {
         super(plugin, region);
     }
 }

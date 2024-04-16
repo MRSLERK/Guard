@@ -8,20 +8,20 @@ import cn.nukkit.event.player.PlayerDropItemEvent;
 import lombok.NonNull;
 import me.mrslerk.guard.GuardManager;
 
-public class PlayerDropListener extends PlayerListener implements Listener{
+public class PlayerDropListener extends PlayerListener implements Listener {
 
 
-    public PlayerDropListener(@NonNull GuardManager plugin){
+    public PlayerDropListener(@NonNull GuardManager plugin) {
         super(plugin);
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
-    public void onEvent(@NonNull PlayerDropItemEvent event){
-        if(event.isCancelled()){
+    public void onEvent(@NonNull PlayerDropItemEvent event) {
+        if (event.isCancelled()) {
             return;
         }
         Player player = event.getPlayer();
-        if(isFlagDenied(player, "drop", null)){
+        if (isFlagDenied(player, "drop", null)) {
             event.setCancelled(true);
         }
     }

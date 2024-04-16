@@ -4,9 +4,9 @@ import me.mrslerk.guard.GuardManager;
 import me.mrslerk.guard.data.Region;
 import me.mrslerk.guard.event.RegionEvent;
 
-public class RegionLoadEvent extends RegionEvent{
+public class RegionLoadEvent extends RegionEvent {
 
-    public RegionLoadEvent(GuardManager plugin, Region region){
+    public RegionLoadEvent(GuardManager plugin, Region region) {
         super(plugin, region);
     }
 }

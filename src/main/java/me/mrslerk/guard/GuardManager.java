@@ -34,22 +34,26 @@ public class GuardManager extends PluginBase {
 
     @Getter
     public static GuardManager instance;
-
+    public final HashMap<String, Position> firstPos = new HashMap<>();
+    public final HashMap<String, Position> secondPos = new HashMap<>();
+    @Getter
+    public final HashMap<String, Boolean> defaultFlags = new HashMap<>();
+    public final HashMap<String, FakeStructBlock> selections = new HashMap<>();
+    private final HashMap<String, HashMap<String, Region>> regions = new HashMap<>();
     private Config messages;
     private Config config;
     private GroupConfig group;
 
-    private final HashMap<String, HashMap<String, Region>> regions = new HashMap<>();
-
-    public final HashMap<String, Position> firstPos = new HashMap<>();
-    public final HashMap<String, Position> secondPos = new HashMap<>();
-
-    @Getter
-    public final HashMap<String, Boolean> defaultFlags = new HashMap<>();
-
-
-    public final HashMap<String, FakeStructBlock> selections = new HashMap<>();
-
+    public static void metricsStart() {
+        try {
+            int pluginId = 18883;
+            Metrics metrics = new Metrics(getInstance(), pluginId);
+            metrics.addCustomChart(new Metrics.SimplePie("nukkit_version", () -> getInstance().getServer().getNukkitVersion()));
+            getInstance().getLogger().info(TextFormat.GREEN + "Loaded Metrics");
+        } catch (Exception e) {
+            getInstance().getLogger().info(TextFormat.GREEN + "Can't load metrics");
+        }
+    }
 
     @Override
     public void onLoad() {
@@ -70,18 +74,6 @@ public class GuardManager extends PluginBase {
         getServer().getCommandMap().register(getName(), new RegionCommand("rg", "guard"));
         metricsStart();
     }
-
-    public static void metricsStart() {
-        try {
-            int pluginId = 18883;
-            Metrics metrics = new Metrics(getInstance(), pluginId);
-            metrics.addCustomChart(new Metrics.SimplePie("nukkit_version", () -> getInstance().getServer().getNukkitVersion()));
-            getInstance().getLogger().info(TextFormat.GREEN + "Loaded Metrics");
-        } catch (Exception e) {
-            getInstance().getLogger().info(TextFormat.GREEN + "Can't load metrics");
-        }
-    }
-
 
     private void registerFlags() {
         for (Map.Entry<String, Object> entry : config.getSection("default-flags").entrySet()) {

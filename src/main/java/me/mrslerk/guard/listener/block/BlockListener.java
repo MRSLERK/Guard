@@ -12,61 +12,61 @@ import me.mrslerk.guard.event.flag.FlagCheckByBlockEvent;
 import me.mrslerk.guard.event.flag.FlagCheckByPlayerEvent;
 
 
-abstract public class BlockListener{
+abstract public class BlockListener {
 
     @Getter
     private final GuardManager plugin;
 
-    public BlockListener(@NonNull GuardManager plugin){
+    public BlockListener(@NonNull GuardManager plugin) {
         this.plugin = plugin;
     }
 
-    public boolean isFlagDenied(@NonNull Position position, @NonNull String flag, Player player){
+    public boolean isFlagDenied(@NonNull Position position, @NonNull String flag, Player player) {
         GuardManager api = getPlugin();
-        if(api.isIgnoredFlag(flag, position.getLevel())){
+        if (api.isIgnoredFlag(flag, position.getLevel())) {
             return false;
         }
 
-        if(player != null){
-            if(player.hasPermission("guard.noflag")){
+        if (player != null) {
+            if (player.hasPermission("guard.noflag")) {
                 return false;
             }
         }
 
         Region region = api.getRegion(position);
 
-        if(region == null){
+        if (region == null) {
             return false;
         }
 
-        if(region.getFlagValue(flag)){
+        if (region.getFlagValue(flag)) {
             return false;
         }
 
         FlagCheckByBlockEvent event = new FlagCheckByBlockEvent(api, region, flag, position, player);
         api.getServer().getPluginManager().callEvent(event);
 
-        if(event.isCancelled()){
+        if (event.isCancelled()) {
             return event.isMainEventCancelled();
         }
 
-        if(player == null){
+        if (player == null) {
             return true;
         }
 
         String nick = player.getName().toLowerCase();
 
-        if(nick.equalsIgnoreCase(region.getOwner()) || region.hasMember(nick)){
+        if (nick.equalsIgnoreCase(region.getOwner()) || region.hasMember(nick)) {
             FlagCheckByPlayerEvent event2 = new FlagCheckByPlayerEvent(api, region, flag, player, position);
             api.getServer().getPluginManager().callEvent(event2);
 
-            if(event2.isCancelled()){
+            if (event2.isCancelled()) {
                 return event2.isMainEventCancelled();
             }
             return false;
         }
 
-        if(flag.equals("break") || flag.equals("place")){
+        if (flag.equals("break") || flag.equals("place")) {
             LevelEventPacket packet = new LevelEventPacket();
             packet.evid = LevelEventPacket.EVENT_PARTICLE_BLOCK_FORCE_FIELD;
             packet.data = 1;
@@ -77,7 +77,7 @@ abstract public class BlockListener{
             player.dataPacket(packet);
         }
 
-        if(flag.equals("break")){
+        if (flag.equals("break")) {
             Position pos = player.getPosition().subtract(position.getX(), position.getY(), position.getZ());
             pos.y = Math.abs(pos.y + 2);
             pos = pos.divide(8);

@@ -5,27 +5,26 @@ import me.mrslerk.guard.GuardManager;
 import me.mrslerk.guard.data.Region;
 import me.mrslerk.guard.event.RegionEvent;
 
-class FlagCheckEvent extends RegionEvent{
-
-    private boolean needCancel = false;
+class FlagCheckEvent extends RegionEvent {
 
     @Getter
     private final String flag;
+    private boolean needCancel = false;
 
-    public FlagCheckEvent(GuardManager plugin, Region region, String flag){
+    public FlagCheckEvent(GuardManager plugin, Region region, String flag) {
         super(plugin, region);
         this.flag = flag.toLowerCase();
     }
 
-    public boolean isMainEventCancelled(){
+    public boolean isMainEventCancelled() {
         return needCancel;
     }
 
-    public void setMainEventCancelled(boolean value){
+    public void setMainEventCancelled(boolean value) {
         needCancel = value;
     }
 
-    public void setMainEventCancelled(){
+    public void setMainEventCancelled() {
         needCancel = true;
     }
 }
